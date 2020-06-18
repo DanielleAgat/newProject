@@ -40,6 +40,7 @@ void addCellToPath(char** board, boardPos currCell, Move move, char index) {
 void copyBoard(char** orig, char** dest, boardPos start) {
 	for (int i = 0; i < N; i++) {
 		dest[i] = (char*)malloc(sizeof(char) * M);
+		checkMemoryAllocation(dest[i]);
 		for (int j = 0; j < M; j++)
 			dest[i][j] = orig[i][j];
 	}

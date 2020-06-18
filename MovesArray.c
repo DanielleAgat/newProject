@@ -153,7 +153,7 @@ bool isValid(char** board, Move cellDest, int i, int j) {
 	char colDest = cellDest.cols;
 
 	if (i + rowDest >= N || i + rowDest < 0 || j + colDest >= M || j + colDest < 0)
-		return true;
+		return false;
 	else if (board[i + rowDest][j + colDest] != ' ') 
 		return false;
 	else
