@@ -1,5 +1,8 @@
 //This is a trash file. Do no use it or submit it !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+
+//void insertValidPosToHead(treeNodeListCell* lst,boardPos data);
+
 //moveCell* createMoveNode(Move move, moveCell* next, moveCell* prev);
 
 //void insertDataToEndList(movesList* lst,Move move);

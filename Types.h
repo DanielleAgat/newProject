@@ -24,7 +24,6 @@
 
 typedef char boardPos[2];
 typedef unsigned char BYTE;
-typedef struct _treeNodeListCell treeNodeListCell;
 
 typedef struct _boardPosArray {
 	unsigned int size;
@@ -56,6 +55,7 @@ typedef struct _movesList {
 }movesList;
 
 //Tree types:
+typedef struct _treeNodeListCell treeNodeListCell;
 
 typedef struct _treeNode {
 	boardPos position;

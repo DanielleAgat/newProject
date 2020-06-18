@@ -18,7 +18,7 @@
 #include "stdbool.h"
 
 //TODO: Add description
-#define isEmptyList(lst) (((lst) == NULL) ? TRUE : FALSE)
+#define isEmptyList(lst) (((lst) == NULL) ? true : false)
 
 //TODO: Add description
 pathTree findAllPossiblePaths(boardPos start, movesArray** moves, char** board);
@@ -28,8 +28,6 @@ treeNode* _findAllPossiblePaths(char** board, movesArray** moves, boardPos start
 
 //TODO: Add description
 treeNodeListCell* insertValidPosToHead(treeNodeListCell* lst, boardPos data);
-
-//void insertValidPosToHead(treeNodeListCell* lst,boardPos data);
 
 //TODO: Add description
 treeNode* createNode(boardPos data, treeNodeListCell* nextPossiblePosition);
