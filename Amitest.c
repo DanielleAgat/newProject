@@ -115,7 +115,7 @@ for (int i = 0; i < strlen(input); i++)
 			if (input[i] == '(') {
 				sscanf(&input[i], "(%d,%d)", &tempRow, &tempCol);
 				Move move = { tempRow, tempCol };
-				insertNodeToArr_movesArray(&pMovesArray[row - 'A'][col - 1], move);
+				insertNodeToArr_movesArray(&pMovesArray[toNumeric(row)][col - 1], move);
 			}
 			i++;
 		}
@@ -142,7 +142,7 @@ boardPosArray** getBoardPosArrayPPFromStr(char input[]) {
 			while (input[i] != ']') {
 				if (input[i] == '(') {
 					sscanf(&input[i], "(%c,%d)", &tempRow, &tempCol);
-					insertTo_boardPosArray(&result[row - 'A'][col - 1], tempRow, tempCol);
+					insertTo_boardPosArray(&result[toNumeric(row)][col - 1], tempRow, tempCol);
 				}
 				i++;
 			}
@@ -225,7 +225,7 @@ char** getBoardFromStr(char* input) {
 
 	for (int i = 0; i < strlen(input); i++)
 		if (input[i] == '(') {
-			int row = input[i + 1] - 'A';
+			int row = toNumeric(input[i + 1]);
 			i += 2;
 			while (input[i] != ')') {
 				int col = input[++i] - '1';
@@ -245,11 +245,11 @@ char** getBoard_FILLED_FromStr(char** input_board, char* input_str) {
 	char row, counter = '1';
 	int col;
 	sscanf(input_str, "<%c,%d>", &row, &col);
-	board[row - 'A'][col - 1] = '#';
+	board[toNumeric(row)][col - 1] = '#';
 
 	for (int i = 5; i < strlen(input_str); i += 5) {
 		sscanf(&input_str[i], "(%c,%d)", &row, &col);
-		board[row - 'A'][col - 1] = counter++;
+		board[toNumeric(row)][col - 1] = counter++;
 	}
 
 	return board;
