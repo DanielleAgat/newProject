@@ -15,17 +15,19 @@
 #include "tree.h"
 
 //// Test Libraries !!! ///
-//#include "List_Tests.h"
+#include "List_Tests.h"
 //#include "Amitest.h"
 
 
 //#define question1
 //#define question2
 //#define question3
-//#define question4
-#define question5
+#define question4
+#define twoFullPathes
+#define oneFullPath
+//#define question5
 //#define question5Amit
-#define question6
+//#define question6
 
 int main() {
 
@@ -135,6 +137,8 @@ int main() {
 			movesarr[i][j].size = 0;
 		}
 	}
+
+#ifdef twoFullPaths
 	movesarr[0][0].size = 1;
 	movesarr[0][0].moves[0].rows = 2;
 	movesarr[0][0].moves[0].cols = 2;
@@ -153,7 +157,7 @@ int main() {
 	movesarr[1][2].moves[1].rows = 0;
 	movesarr[1][2].moves[1].cols = -1;
 
-	movesarr[0][1].size = 1;
+	movesarr[0][1].size = 2;
 	movesarr[0][1].moves[0].rows = 2;
 	movesarr[0][1].moves[0].cols = 1;
 	movesarr[0][1].moves[1].rows = 0;
@@ -163,15 +167,53 @@ int main() {
 	movesarr[0][2].moves[0].rows = 1;
 	movesarr[0][2].moves[0].cols = -2;
 
-	movesarr[1][0].size = 1;
+	movesarr[1][0].size = 2;
 	movesarr[1][0].moves[0].rows = 1;
 	movesarr[1][0].moves[0].cols = 0;
+	movesarr[1][0].moves[1].rows = 1;
+	movesarr[1][0].moves[1].cols = 1;
 
 	movesarr[2][0].size = 1;
 	movesarr[2][0].moves[0].rows = 0;
 	movesarr[2][0].moves[0].cols = 1;
-	list = findPathCoveringAllBoard(start4, movesarr, board1);
 
+	movesarr[2][1].size = 1;
+	movesarr[2][1].moves[0].rows = 0;
+	movesarr[2][1].moves[0].cols = -1;
+#endif
+
+#ifdef oneFullPath
+    movesarr[0][0].size = 1;  //A1
+    movesarr[0][0].moves[0].rows = 2;
+    movesarr[0][0].moves[0].cols = 2;
+
+    movesarr[2][2].size = 1;  //C3
+    movesarr[2][2].moves[0].rows = -1;
+    movesarr[2][2].moves[0].cols = 0;
+
+    movesarr[1][2].size = 1;  //B3
+    movesarr[1][2].moves[0].rows = -1;
+    movesarr[1][2].moves[0].cols = -1;
+
+    movesarr[0][1].size = 1;  //A2
+    movesarr[0][1].moves[0].rows = 0;
+    movesarr[0][1].moves[0].cols = 1;
+
+    movesarr[0][2].size = 1;  //A3
+    movesarr[0][2].moves[0].rows = 1;
+    movesarr[0][2].moves[0].cols = -2;
+
+    movesarr[1][0].size = 1;  //B1
+    movesarr[1][0].moves[0].rows = 1;
+    movesarr[1][0].moves[0].cols = 0;
+
+    movesarr[2][0].size = 1; //C1
+    movesarr[2][0].moves[0].rows = 0;
+    movesarr[2][0].moves[0].cols = 1; //C2
+
+#endif
+
+    list = findPathCoveringAllBoard(start4, movesarr, board1);
 	if (list == NULL)
 		printf("There is no path!");
 	else
