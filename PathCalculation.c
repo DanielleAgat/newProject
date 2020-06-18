@@ -7,6 +7,7 @@
 
 movesList* findPathCoveringAllBoard(boardPos start, movesArray** moves, char** board) {
 	movesList* list = (movesList*)malloc(sizeof(movesList));
+	checkMemoryAllocation(list);
 	int levelCounter = 0;
 	int numOfEmptyCells = getCountOfEmptyCells(board);
 	pathTree allPossiblePaths = findAllPossiblePaths(start, moves, board);

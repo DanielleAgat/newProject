@@ -8,10 +8,12 @@
 pathTree findAllPossiblePaths(boardPos start, movesArray** moves, char** board) {
 	pathTree path;
 	char** boardCopy = (char**)malloc(sizeof(char*) * N);
+	checkMemoryAllocation(boardCopy);
 	copyBoard(board, boardCopy, start);
 	validMoves(moves, board);
 	//    Declaring tree source :
 	path.head = (treeNode*)malloc(sizeof(treeNode));
+	checkMemoryAllocation(path.head);
 	path.head->position[0] = start[0];
 	path.head->position[1] = start[1];
 	path.head->next_possible_positions = NULL;

@@ -111,6 +111,7 @@ boardPosArray** validMoves(movesArray** moves, char** board) {
 	int i, j;
 
 	res = (boardPosArray**)malloc(sizeof(boardPosArray*) * N);
+	checkMemoryAllocation(res);
 	for (i = 0; i < N; i++) {
 		res[i] = (boardPosArray*)malloc(sizeof(boardPosArray) * M);
 		for (j = 0; j < M; j++) {

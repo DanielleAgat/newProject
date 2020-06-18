@@ -5,6 +5,7 @@
 
 #ifndef MovesArray
 #define MovesArray
+
 #include "Types.h"
 #include "BinFile.h"
 #include "ErrorsHandlings.h"
