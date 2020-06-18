@@ -17,9 +17,18 @@ int checkAndDisplayPathFromFile(char* file_name, movesArray** moves, char** boar
 	movesList* list=(movesList*)malloc(sizeof(movesList));
 	checkMemoryAllocation(list);
 	makeEmptyList(list);
+
+    if(arr->size == 0){
+        PrintBoard(board);
+        return 3;
+    }
+
+    if(board[toNumeric(arr->positions[0][0])][arr->positions[0][1]-1] == BLOCKED)
+        return 1;
+
     bool found = true;
 
-    for (int i = 0; i < arr->size-1 && found; i++) {
+    for (int i = 0; ((i < (arr->size-1)) && found) ; i++) {
         //Get current boardPos's coordinates
 		char row = arr->positions[i][0]-'A';
 		char col = arr->positions[i][1]-1;
@@ -38,13 +47,14 @@ int checkAndDisplayPathFromFile(char* file_name, movesArray** moves, char** boar
 		}
 		if (!flag) //There is a boardPos that makes the path inValid.
 			found = false;
+
 	}
 	if (!found){
 		result = 1;
 	}
 	else{ //the path is valid
 		int removedMoves = display(list, arr->positions[0], board);
-		if (arr->size - removedMoves == getCountOfEmptyCells(board))
+		if (arr->size - removedMoves == getCountOfEmptyCells(board) + 1)
 			result = 2;
 		else{
 			result = 3;

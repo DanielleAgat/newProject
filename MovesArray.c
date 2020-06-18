@@ -44,8 +44,16 @@ void PrintBoard(char** board) {
 		for (j = 0; j < M; j++) {
 			if (board[i][j] == TAKEN || board[i][j] == BLOCKED || board[i][j] == ' ')
 				printf("%*c", 4, board[i][j]);
-			else
-				printf("%*d", 4, board[i][j]);
+			else{
+                if(board[i][j] == 100)
+                    printf("%*d",4,32);
+                else if(board[i][j] == 101)
+                    printf("%*d",4,35);
+                else if(board[i][j] == 102)
+                    printf("%*d",4,42);
+                else
+                    printf("%*d", 4, board[i][j]);
+			}
 		}
 		printf("\n");
 	}

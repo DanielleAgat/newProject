@@ -19,8 +19,8 @@
 #define BLOCKED '*'
 
 // Board types:
-#define N 3 //Board's rows
-#define M 3 //Board's cols
+#define N 8 //Board's rows
+#define M 8 //Board's cols
 
 typedef char boardPos[2];
 typedef unsigned char BYTE;

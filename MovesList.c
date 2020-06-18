@@ -35,6 +35,16 @@ void addCellToPath(char** board, boardPos currCell, Move move, char index) {
 	currCell[0] += move.rows;
 	currCell[1] += move.cols;
 	board[toNumeric(currCell[0])][currCell[1] - 1] = index;
+
+	if(index == ' ')
+        board[toNumeric(currCell[0])][currCell[1] - 1] = 100;
+	else if(index == TAKEN)
+        board[toNumeric(currCell[0])][currCell[1] - 1] = 101;
+	else if(index == BLOCKED)
+        board[toNumeric(currCell[0])][currCell[1] - 1] = 102;
+    else
+        board[toNumeric(currCell[0])][currCell[1] - 1] = index;
+
 }
 
 void copyBoard(char** orig, char** dest, boardPos start) {
