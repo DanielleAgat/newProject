@@ -18,22 +18,22 @@
 #include "stdbool.h"
 #include "FreeMemory.h"
 
-//TODO: Add description
+//This MACRO return true if a given list is empry ; false otherwise;
 #define isEmptyList(lst) (((lst) == NULL) ? true : false)
 
-//TODO: Add description
+//This function returns a tree of all the possible paths starting from a given boardPos
 pathTree findAllPossiblePaths(boardPos start, movesArray** moves, char** board);
 
-//TODO: Add description
+//This is an inner function. it returns a treeNode of all the possible paths starting from a given boardPos
 treeNode* _findAllPossiblePaths(char** board, movesArray** moves, boardPos start, treeNode* node);
 
-//TODO: Add description
+//This function inserts a new treeNodeListCell with a given boardPos as its data to the head of a given treeList.
 treeNodeListCell* insertValidPosToHead(treeNodeListCell* lst, boardPos data);
 
-//TODO: Add description
+//This function creates a treeNode node and returns it.
 treeNode* createNode(boardPos data, treeNodeListCell* nextPossiblePosition);
 
-//TODO: Add description
+//This function removes given boardPosses from the board.
 void removeTakenPos(char** board, boardPos* posToRemove, int size);
 
 

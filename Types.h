@@ -8,10 +8,6 @@
 
 //General types:
 
-//TODO: remove if redundant
-//This MACRO converts a char of integer into an int type
-#define parseInt(char) (char - '0')
-
 //This MACRO converts a capital letter into it's ASCII
 #define toNumeric(char) (char - 'A')
 

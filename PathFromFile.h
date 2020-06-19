@@ -19,8 +19,6 @@
 #include "FreeMemory.h"
 
 
-//#define IsValidPos(next,valid)  ((((next)[0])==((valid)[0])) && (((next)[1])==((valid)[1]))) ? (true:false) TODO: Remove before submission if not being used!
-
 //This function reads a boardPoses' binary file and returns:
 //(-1) If the file doesn't exist.
 //(1) If the boardPoses doesn't represent a valid path.

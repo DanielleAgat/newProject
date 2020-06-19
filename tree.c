@@ -35,10 +35,6 @@ treeNode* _findAllPossiblePaths(char** board, movesArray** moves, boardPos start
 		node->next_possible_positions = NULL;
 	}
 
-	printf("\n%c%d ", start[0], start[1]); //TODO: Remove before submission
-	printf("Node's position: %c%d ", node->position[0], node->position[1]); //TODO: Remove before submission
-	printf("\nInner list:\n"); //TODO: Remove before submission
-
 	for (unsigned int i = 0; i < numOfChild; i++) { //Runs as long as there are children to the boardPos
 		int k = toNumeric(start[0]);
 		int t = start[1] - 1;
@@ -50,7 +46,6 @@ treeNode* _findAllPossiblePaths(char** board, movesArray** moves, boardPos start
 			}
 			addCellToPath(board, start, moves[startRow][startCol].moves[i], TAKEN);
 			node->next_possible_positions = insertValidPosToHead(node->next_possible_positions, start);
-			printf("%c%d ", start[0], start[1]); //TODO: Remove before submission
 			changesInBoard[logSize][0] = start[0];
 			changesInBoard[logSize++][1] = start[1];
 			node->next_possible_positions->node = _findAllPossiblePaths(board, moves, start, node->next_possible_positions->node);
@@ -58,7 +53,7 @@ treeNode* _findAllPossiblePaths(char** board, movesArray** moves, boardPos start
 			//Return to original parameters:
 			start[0] -= moves[startRow][startCol].moves[i].rows;
 			start[1] -= moves[startRow][startCol].moves[i].cols;
-			removeTakenPos(board, changesInBoard, logSize); //TODO: Check failure
+			removeTakenPos(board, changesInBoard, logSize);
 		}
 	}
 	return node;
