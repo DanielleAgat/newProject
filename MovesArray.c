@@ -39,42 +39,40 @@ void PrintBoard(char** board) {
 
 
 boardPosArray** validMoves(movesArray** moves, char** board) {
-	boardPosArray** res;
-	int i, j;
-
-	res = (boardPosArray**)malloc(sizeof(boardPosArray*) * N);
+	boardPosArray** res = (boardPosArray**)malloc(sizeof(boardPosArray*) * N);
 	checkMemoryAllocation(res);
-	for (i = 0; i < N; i++) {
+	
+	for (int i = 0; i < N; i++) {
 		res[i] = (boardPosArray*)malloc(sizeof(boardPosArray) * M);
-		for (j = 0; j < M; j++) {
+		checkMemoryAllocation(res[i]);
+		for (int j = 0; j < M; j++) {
 			int logsize = 0;
 			Move* temp = (Move*)malloc(sizeof(Move) * moves[i][j].size);
+			checkMemoryAllocation(temp);
 			res[i][j].positions = (boardPos*)malloc(sizeof(boardPos) * moves[i][j].size);
+            checkMemoryAllocation(res[i][j].positions);
 
 			int indexMoves = 0;
-			int indexPos = 0;
-			
 			while (indexMoves < moves[i][j].size) {
 				if (isValid(board, moves[i][j].moves[indexMoves], i, j)) {
 					temp[logsize].rows = moves[i][j].moves[indexMoves].rows;
 					temp[logsize].cols = moves[i][j].moves[indexMoves].cols;
+					res[i][j].positions[logsize][0] = i + moves[i][j].moves[indexMoves].rows + 'A';
+					res[i][j].positions[logsize][1] = j + moves[i][j].moves[indexMoves].cols + 1;
 					logsize++;
-					res[i][j].positions[indexPos][0] = i + moves[i][j].moves[indexMoves].rows + 'A';
-					res[i][j].positions[indexPos][1] = j + moves[i][j].moves[indexMoves].cols + 1;
-					indexPos++;
 				}
 				indexMoves++;
 			}
 			if (logsize < indexMoves) {
 				temp = (Move*)realloc(temp, (sizeof(Move)) * logsize);
-				res[i][j].positions = (boardPos*)realloc(res[i][j].positions, (sizeof(boardPos)) * indexPos);				
+				checkMemoryAllocation(temp);
+				res[i][j].positions = (boardPos*)realloc(res[i][j].positions, (sizeof(boardPos)) * logsize);
+				checkMemoryAllocation(res[i][j].positions);
 			}
 
-			moves[i][j].size = logsize;
-			res[i][j].size = indexPos;
+			moves[i][j].size = res[i][j].size = logsize;
 			free(moves[i][j].moves);
 			moves[i][j].moves = temp;
-
 		}
 	}
 	return res;

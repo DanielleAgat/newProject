@@ -32,8 +32,7 @@ void saveListToBinFile(char* file_name, boardPosArray* pos_arr) {
 			j += 4;
 		}
 	}
-
-	fclose(fb);
+    closeFileWithValidation(fb);
 }
 
 boardPosArray* readFromBinFile(char* file_name ,bool* isExist){

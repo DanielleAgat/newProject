@@ -10,7 +10,9 @@ pathTree findAllPossiblePaths(boardPos start, movesArray** moves, char** board) 
 	char** boardCopy = (char**)malloc(sizeof(char*) * N);
 	checkMemoryAllocation(boardCopy);
 	copyBoard(board, boardCopy, start);
-	validMoves(moves, board);
+	boardPosArray** toFree = validMoves(moves, board);
+	freeBoardPosArrayMatrix(toFree);
+
 	//    Declaring tree source :
 	path.head = (treeNode*)malloc(sizeof(treeNode));
 	checkMemoryAllocation(path.head);
@@ -18,6 +20,8 @@ pathTree findAllPossiblePaths(boardPos start, movesArray** moves, char** board) 
 	path.head->position[1] = start[1];
 	path.head->next_possible_positions = NULL;
 	path.head = _findAllPossiblePaths(boardCopy, moves, start, path.head);
+
+	freeBoard(boardCopy);
 	return path;
 }
 
@@ -30,6 +34,7 @@ treeNode* _findAllPossiblePaths(char** board, movesArray** moves, boardPos start
 
 	if (node == NULL && numOfChild != 0) {
 		node = (treeNode*)malloc(sizeof(treeNode));
+		checkMemoryAllocation(node);
 		node->position[0] = start[0];
 		node->position[1] = start[1];
 		node->next_possible_positions = NULL;
@@ -41,6 +46,7 @@ treeNode* _findAllPossiblePaths(char** board, movesArray** moves, boardPos start
 		if (isValid(board, moves[startRow][startCol].moves[i], k, t)) {
 			if (isEmptyList(node->next_possible_positions)) {
 				node->next_possible_positions = (treeNodeListCell*)malloc(sizeof(treeNodeListCell));
+				checkMemoryAllocation(node->next_possible_positions);
 				node->next_possible_positions->next = NULL;
 				node->next_possible_positions->node = NULL;
 			}
@@ -61,6 +67,7 @@ treeNode* _findAllPossiblePaths(char** board, movesArray** moves, boardPos start
 
 treeNodeListCell* insertValidPosToHead(treeNodeListCell* lst, boardPos data) {
 	treeNodeListCell* newListCell = (treeNodeListCell*)malloc(sizeof(treeNodeListCell));
+	checkMemoryAllocation(newListCell);
 	newListCell->node = createNode(data, NULL);
 	newListCell->next = lst;
 	return newListCell;
@@ -68,6 +75,7 @@ treeNodeListCell* insertValidPosToHead(treeNodeListCell* lst, boardPos data) {
 
 treeNode* createNode(boardPos data, treeNodeListCell* nextPossiblePosition) {
 	treeNode* newNode = (treeNode*)malloc(sizeof(treeNode));
+	checkMemoryAllocation(newNode);
 	newNode->position[0] = data[0];
 	newNode->position[1] = data[1];
 	newNode->next_possible_positions = nextPossiblePosition;
