@@ -99,35 +99,257 @@ int main() {
 
 	///////////////    Question 3 tests:    ///////////////
 #ifdef question3
-	movesArray** moves3;
-	pathTree tree;
-	boardPos start;
-	boardPosArray** positionsArray3;
-	int i, j;
-	moves3 = (movesArray**)malloc(sizeof(movesArray*) * N);
-	for (i = 0; i < N; i++) {
-		moves3[i] = (movesArray*)malloc(sizeof(movesArray) * M);
-	}
+    int i, j;
+    boardPos start3;
+    movesList* list;
+    pathTree tree;
+    start3[0] = 'E';
+    start3[1] = 4;
 
-	start[0] = 'C';
-	start[1] = 3;
+    movesArray** movesarr = (movesArray**)malloc(sizeof(movesArray*) * N);
+    for (i = 0; i < N; i++)
+    {
+        movesarr[i] = (movesArray*)malloc(sizeof(movesArray) * M);
+        for (j = 0; j < M; j++)
+        {
+            movesarr[i][j].moves = (Move*)malloc(sizeof(Move) * 3);
+            movesarr[i][j].size = 0;
+        }
+    }
 
-	initMovesArray(moves3);
-	//    positionsArray3 = validMoves(moves3,board);
-	//    PrintMovesBoard(moves3);
+    movesarr[toNumeric('E')][3].size = 1;
+    movesarr[toNumeric('E')][3].moves[0].rows = -1;
+    movesarr[toNumeric('E')][3].moves[0].cols = 1;
+    //1
+    movesarr[toNumeric('D')][4].size = 1;
+    movesarr[toNumeric('D')][4].moves[0].rows = -3;
+    movesarr[toNumeric('D')][4].moves[0].cols = -1;
+    //2
+    movesarr[toNumeric('A')][3].size = 1;
+    movesarr[toNumeric('A')][3].moves[0].rows = 1;
+    movesarr[toNumeric('A')][3].moves[0].cols = -3;
+    //3
+    movesarr[toNumeric('B')][0].size = 1;
+    movesarr[toNumeric('B')][0].moves[0].rows = -1;
+    movesarr[toNumeric('B')][0].moves[0].cols = 7;
+    //4
+    movesarr[toNumeric('A')][7].size = 1;
+    movesarr[toNumeric('A')][7].moves[0].rows = 6;
+    movesarr[toNumeric('A')][7].moves[0].cols = -7;
+    //5
+    movesarr[toNumeric('G')][0].size = 1;
+    movesarr[toNumeric('G')][0].moves[0].rows = -3;
+    movesarr[toNumeric('G')][0].moves[0].cols = 2;
+    //6
+    movesarr[toNumeric('D')][2].size = 1;
+    movesarr[toNumeric('D')][2].moves[0].rows = -2;
+    movesarr[toNumeric('D')][2].moves[0].cols = 3;
+    //7
+    movesarr[toNumeric('B')][5].size = 1;
+    movesarr[toNumeric('B')][5].moves[0].rows = 5;
+    movesarr[toNumeric('B')][5].moves[0].cols = 1;
+    //8
+    movesarr[toNumeric('G')][6].size = 1;
+    movesarr[toNumeric('G')][6].moves[0].rows = 1;
+    movesarr[toNumeric('G')][6].moves[0].cols = -3;
+    //9
+    movesarr[toNumeric('H')][3].size = 1;
+    movesarr[toNumeric('H')][3].moves[0].rows = -2;
+    movesarr[toNumeric('H')][3].moves[0].cols = -3;
+    //10
+    movesarr[toNumeric('F')][0].size = 1;
+    movesarr[toNumeric('F')][0].moves[0].rows = 2;
+    movesarr[toNumeric('F')][0].moves[0].cols = 2;
+    //11
+    movesarr[toNumeric('H')][2].size = 1;
+    movesarr[toNumeric('H')][2].moves[0].rows = -2;
+    movesarr[toNumeric('H')][2].moves[0].cols = 2;
+    //12
+    movesarr[toNumeric('F')][4].size = 1;
+    movesarr[toNumeric('F')][4].moves[0].rows = -2;
+    movesarr[toNumeric('F')][4].moves[0].cols = 3;
+    //13
+    movesarr[toNumeric('D')][7].size = 1;
+    movesarr[toNumeric('D')][7].moves[0].rows = -1;
+    movesarr[toNumeric('D')][7].moves[0].cols = -7;
+    //14
+    movesarr[toNumeric('C')][0].size = 1;
+    movesarr[toNumeric('C')][0].moves[0].rows = 0;
+    movesarr[toNumeric('C')][0].moves[0].cols = 1;
+    //15
+    movesarr[toNumeric('C')][1].size = 2;
+    movesarr[toNumeric('C')][1].moves[0].rows = 0;
+    movesarr[toNumeric('C')][1].moves[0].cols = 2;
+    movesarr[toNumeric('C')][1].moves[1].rows = 0; //INVALID
+    movesarr[toNumeric('C')][1].moves[1].cols = 1; //INVALID
+    //16
+    movesarr[toNumeric('C')][3].size = 1;
+    movesarr[toNumeric('C')][3].moves[0].rows = -1;
+    movesarr[toNumeric('C')][3].moves[0].cols = 0;
+    //17
+    movesarr[toNumeric('B')][3].size = 1;
+    movesarr[toNumeric('B')][3].moves[0].rows = 6;
+    movesarr[toNumeric('B')][3].moves[0].cols = 2;
+    //18
+    movesarr[toNumeric('H')][5].size = 1;
+    movesarr[toNumeric('H')][5].moves[0].rows = 0;
+    movesarr[toNumeric('H')][5].moves[0].cols = -1;
+    //19
+    movesarr[toNumeric('H')][4].size = 1;
+    movesarr[toNumeric('H')][4].moves[0].rows = -1;
+    movesarr[toNumeric('H')][4].moves[0].cols = 0;
+    //20
+    movesarr[toNumeric('G')][4].size = 1;
+    movesarr[toNumeric('G')][4].moves[0].rows = -2;
+    movesarr[toNumeric('G')][4].moves[0].cols = 2;
+    //21
+    movesarr[toNumeric('E')][6].size = 1;
+    movesarr[toNumeric('E')][6].moves[0].rows = -3;
+    movesarr[toNumeric('E')][6].moves[0].cols = -5;
+    //22
+    movesarr[toNumeric('B')][1].size = 1;
+    movesarr[toNumeric('B')][1].moves[0].rows = 6;
+    movesarr[toNumeric('B')][1].moves[0].cols = 5;
+    //23
+    movesarr[toNumeric('H')][6].size = 1;
+    movesarr[toNumeric('H')][6].moves[0].rows = 0;
+    movesarr[toNumeric('H')][6].moves[0].cols = 1;
+    //24
+    movesarr[toNumeric('H')][7].size = 1;
+    movesarr[toNumeric('H')][7].moves[0].rows = -5;
+    movesarr[toNumeric('H')][7].moves[0].cols = -1;
+    //25
+    movesarr[toNumeric('C')][6].size = 1;
+    movesarr[toNumeric('C')][6].moves[0].rows = 4;
+    movesarr[toNumeric('C')][6].moves[0].cols = -5;
+    //26
+    movesarr[toNumeric('G')][1].size = 1;
+    movesarr[toNumeric('G')][1].moves[0].rows = -2;
+    movesarr[toNumeric('G')][1].moves[0].cols = -1;
+    //27
+    movesarr[toNumeric('E')][0].size = 1;
+    movesarr[toNumeric('E')][0].moves[0].rows = -4;
+    movesarr[toNumeric('E')][0].moves[0].cols = 5;
+    //28
+    movesarr[toNumeric('A')][5].size = 1;
+    movesarr[toNumeric('A')][5].moves[0].rows = 0;
+    movesarr[toNumeric('A')][5].moves[0].cols = -5;
+    //29
+    movesarr[toNumeric('A')][0].size = 1;
+    movesarr[toNumeric('A')][0].moves[0].rows = 3;
+    movesarr[toNumeric('A')][0].moves[0].cols = 5;
+    //30
+    movesarr[toNumeric('D')][5].size = 1;
+    movesarr[toNumeric('D')][5].moves[0].rows = 2;
+    movesarr[toNumeric('D')][5].moves[0].cols = -3;
+    //31
+    movesarr[toNumeric('F')][2].size = 1;
+    movesarr[toNumeric('F')][2].moves[0].rows = -1;
+    movesarr[toNumeric('F')][2].moves[0].cols = -1;
+    //32
+    movesarr[toNumeric('E')][1].size = 1;
+    movesarr[toNumeric('E')][1].moves[0].rows = 1;
+    movesarr[toNumeric('E')][1].moves[0].cols = 0;
+    //33
+    movesarr[toNumeric('F')][1].size = 1;
+    movesarr[toNumeric('F')][1].moves[0].rows = 1;
+    movesarr[toNumeric('F')][1].moves[0].cols = 1;
+    //34
+    movesarr[toNumeric('G')][2].size = 1;
+    movesarr[toNumeric('G')][2].moves[0].rows = -4;
+    movesarr[toNumeric('G')][2].moves[0].cols = 2;
+    //35
+    movesarr[toNumeric('C')][4].size = 1;
+    movesarr[toNumeric('C')][4].moves[0].rows = 3;
+    movesarr[toNumeric('C')][4].moves[0].cols = 2;
+    //36
+    movesarr[toNumeric('F')][6].size = 3;
+    movesarr[toNumeric('F')][6].moves[0].rows = -1;
+    movesarr[toNumeric('F')][6].moves[0].cols = -1;
+    movesarr[toNumeric('F')][6].moves[1].rows = -1; //INVALID 1
+    movesarr[toNumeric('F')][6].moves[1].cols = -2; //INVALID 1
+    movesarr[toNumeric('F')][6].moves[2].rows = -1; //INVALID 2
+    movesarr[toNumeric('F')][6].moves[2].cols = -3; //INVALID 2
+    //37
+    movesarr[toNumeric('E')][5].size = 1;
+    movesarr[toNumeric('E')][5].moves[0].rows = 1;
+    movesarr[toNumeric('E')][5].moves[0].cols = 0;
+    //38
+    movesarr[toNumeric('F')][5].size = 1;
+    movesarr[toNumeric('F')][5].moves[0].rows = 1;
+    movesarr[toNumeric('F')][5].moves[0].cols = -2;
+    //39
+    movesarr[toNumeric('G')][3].size = 1;
+    movesarr[toNumeric('G')][3].moves[0].rows = -5;
+    movesarr[toNumeric('G')][3].moves[0].cols = 3;
+    //40
+    movesarr[toNumeric('B')][6].size = 1;
+    movesarr[toNumeric('B')][6].moves[0].rows = -1;
+    movesarr[toNumeric('B')][6].moves[0].cols = 0;
+    //41
+    movesarr[toNumeric('A')][6].size = 1;
+    movesarr[toNumeric('A')][6].moves[0].rows = 3;
+    movesarr[toNumeric('A')][6].moves[0].cols = -5;
+    //42
+    movesarr[toNumeric('D')][1].size = 1;
+    movesarr[toNumeric('D')][1].moves[0].rows = 0;
+    movesarr[toNumeric('D')][1].moves[0].cols = -1;
+    //43
+    movesarr[toNumeric('D')][0].size = 1;
+    movesarr[toNumeric('D')][0].moves[0].rows = 3;
+    movesarr[toNumeric('D')][0].moves[0].cols = 5;
+    //44
+    movesarr[toNumeric('G')][5].size = 1;
+    movesarr[toNumeric('G')][5].moves[0].rows = -1;
+    movesarr[toNumeric('G')][5].moves[0].cols = 2;
+    //45
+    movesarr[toNumeric('F')][7].size = 1;
+    movesarr[toNumeric('F')][7].moves[0].rows = -1;
+    movesarr[toNumeric('F')][7].moves[0].cols = 0;
+    //46
+    movesarr[toNumeric('E')][7].size = 1;
+    movesarr[toNumeric('E')][7].moves[0].rows = -3;
+    movesarr[toNumeric('E')][7].moves[0].cols = -5;
+    //47
+    movesarr[toNumeric('B')][2].size = 1;
+    movesarr[toNumeric('B')][2].moves[0].rows = 2;
+    movesarr[toNumeric('B')][2].moves[0].cols = 4;
+    //48
+    movesarr[toNumeric('D')][6].size = 1;
+    movesarr[toNumeric('D')][6].moves[0].rows = -1;
+    movesarr[toNumeric('D')][6].moves[0].cols = -1;
+    //49
+    movesarr[toNumeric('C')][5].size = 1;
+    movesarr[toNumeric('C')][5].moves[0].rows = 0;
+    movesarr[toNumeric('C')][5].moves[0].cols = 2;
+    //50
+    movesarr[toNumeric('C')][7].size = 1;
+    movesarr[toNumeric('C')][7].moves[0].rows = -1;
+    movesarr[toNumeric('C')][7].moves[0].cols = 0;
+    //51
+    movesarr[toNumeric('B')][7].size = 1;
+    movesarr[toNumeric('B')][7].moves[0].rows = 0;
+    movesarr[toNumeric('B')][7].moves[0].cols = -3;
+    //52
+    movesarr[toNumeric('B')][4].size = 3;
+    movesarr[toNumeric('B')][4].moves[0].rows = -1;
+    movesarr[toNumeric('B')][4].moves[0].cols = 0;
+    movesarr[toNumeric('B')][4].moves[1].rows = -1;
+    movesarr[toNumeric('B')][4].moves[1].cols = -3;
+    movesarr[toNumeric('B')][4].moves[2].rows = -1;
+    movesarr[toNumeric('B')][4].moves[2].cols = -2;
+    //53
 
-	//    for (i = 0; i < N; i++){
-	//        for (j = 0; j < M; j++){
-	//            int indexPos = 0;
-	//            while (indexPos < positionsArray3[i][j].size){
-	//                printf("The position for %c%c is:%c%c\n", i + 'A', j + '1', positionsArray3[i][j].positions[indexPos][0], positionsArray3[i][j].positions[indexPos][1]);
-	//                printf("\n");
-	//                indexPos++;
-	//            }
-	//        }
-	//    }
+    movesarr[toNumeric('A')][4].size = 1;
+    movesarr[toNumeric('A')][4].moves[0].rows = 0;
+    movesarr[toNumeric('A')][4].moves[0].cols = -2;
+    //54
+    movesarr[toNumeric('A')][2].size = 1;
+    movesarr[toNumeric('A')][2].moves[0].rows = 0;
+    movesarr[toNumeric('A')][2].moves[0].cols = -1;
+    //55
 
-	tree = findAllPossiblePaths(start, moves3, board);
+	tree = findAllPossiblePaths(start3, movesarr, fullBoard);
 #endif question3
 
 	///////////////    Question 4 tests:    ///////////////

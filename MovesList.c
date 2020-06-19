@@ -96,7 +96,7 @@ void insertDataToHead(movesList* lst, Move move) {
 
 void insertNewNodeHead(movesList* lst, moveCell* newNode) {
     if (lst->head == NULL) {
-        lst->head = newNode;
+        lst->head = lst->tail = newNode;
     }
     else {
         newNode->next = lst->head;
