@@ -15,6 +15,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "stdbool.h"
+#include "FreeMemory.h"
 
 //////////////////////// Logic functions: ////////////////////////
 
@@ -50,16 +51,5 @@ void insertNewNodeHead(movesList* lst, moveCell* newNode);
 
 //This function removes a move node from a given list
 void removeMoveFromList(movesList* moves_List, moveCell** toRemove);
-
-//////////////// Free memory allocation functions: ////////////////
-
-//This function frees a movesList list
-void freeMovesList(movesList* moves_list);
-
-//This is an inner function. It frees a movesList list
-void _freeMovesList(moveCell* move);
-
-//This function frees a board
-void freeBoard(char** board);
 
 #endif

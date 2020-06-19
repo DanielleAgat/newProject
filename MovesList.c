@@ -126,24 +126,3 @@ void removeMoveFromList(movesList* moves_List, moveCell** toRemove) {
     free(temp);
 
 }
-
-//////////////// Free memory allocation functions: ////////////////
-
-void freeMovesList(movesList* moves_list) {
-    _freeMovesList(moves_list->head);
-}
-
-void _freeMovesList(moveCell* moveNode) {
-    moveCell* temp;
-    while (moveNode != NULL) {
-        temp = moveNode;
-        moveNode = moveNode->next;
-        free(temp);
-    }
-}
-
-void freeBoard(char** board) {
-    for (int i = 0; i < N; i++)
-        free(board[i]);
-    free(board);
-}

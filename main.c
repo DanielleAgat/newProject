@@ -13,6 +13,7 @@
 #include "PathCalculation.h"
 #include "PathFromFile.h"
 #include "tree.h"
+#include "FreeMemory.h"
 
 //// Test Libraries !!! ///
 #include "List_Tests.h"
@@ -22,13 +23,13 @@
 //#define question1
 //#define question2
 //#define question3
-#define question4
+//#define question4
 //#define twoFullPathes
 //#define oneFullPath
-//#define question5
+#define question5
 //#define DanielsBoard
 //#define question5Amit
-//#define question6
+#define question6
 
 int main() {
 
@@ -451,7 +452,7 @@ int main() {
     movesarr[toNumeric('A')][2].moves[0].cols = -1;
     //55
 
-    list = findPathCoveringAllBoard(start4, movesarr, board1);
+    list = findPathCoveringAllBoard(start4, movesarr, fullBoard);
 	if (list == NULL)
 		printf("There is no path!");
 	else

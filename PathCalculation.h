@@ -15,14 +15,17 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "stdbool.h"
+#include "FreeMemory.h"
 
-//TODO: Add description
+//This function returns a movesList of a path covering all board starts from a given boardPos ; NULL if doesn't exist.
 movesList* findPathCoveringAllBoard(boardPos start, movesArray** moves, char** board);
 
 //This function returns the amount of empty cells is a given board.
 int getCountOfEmptyCells(char** board);
 
-//TODO: Add description
+//This is an inner function of findPathCoveringAllBoard.
+//Using a pointer output it returns a tree of a path including all-board boardPoses if exist ; NULL otherwise.
+//Returns true if exist ; false otherwise.
 bool getAllBoardPath(treeNode* root, movesList* list, int levelCounter, int emptyCells);
 
 //This function returns the move between 2 given boardPoss.

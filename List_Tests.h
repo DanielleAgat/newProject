@@ -19,6 +19,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "stdbool.h"
+#include "FreeMemory.h"
 
 movesList getListFromUser();
 
@@ -27,5 +28,10 @@ void makeEmptyList(movesList* lst);
 void printList(movesList lst);
 
 void _print_list(moveCell* node);
+
+//TODO: Add description
+void initMovesArray(movesArray** moves);
+
+void PrintMovesBoard(movesArray** moves);
 
 #endif

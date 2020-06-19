@@ -73,16 +73,7 @@ bool isValidPos(boardPos next, boardPos valid){
 	return false;
 }
 
-void freeBoardPosArrayMatrix(boardPosArray** matrix){
-    for(int i=0 ;i < N ; i++)
-        freeBoardPosArr(matrix[i]);
-}
 
-
-void freeBoardPosArr(boardPosArray* arr){
-    free(arr->positions);
-    free(arr);
-}
 
 
 

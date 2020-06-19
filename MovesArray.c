@@ -5,31 +5,9 @@
 
 #include "MovesArray.h"
 
-void PrintMovesBoard(movesArray** moves) {
-	char row_letter = 65;
-	printf(" ");
-	int i, j, k;
-	for (j = 1; j < (M + 1); j++) {
-		//		printf("    %d", j);
-	}
-	printf("\n");
-	for (i = 0; i < N; i++) {
-		//		printf("%c", row_letter);
-		for (int j = 0; j < M; j++) {
-			for (k = 0; k < moves[i][j].size; k++) {
-				printf("row: %d col: %d \n", moves[i][j].moves[k].rows, moves[i][j].moves[k].cols);
-			}
-			printf("\n");
-		}
-		row_letter++;
-		printf("\n");
-	}
-}
-
 void PrintBoard(char** board) {
 	int i, j;
 	char rowLetter = 'A';
-
 
 	//	Print cols row:
 	printf(" ");
@@ -59,60 +37,6 @@ void PrintBoard(char** board) {
 	}
 }
 
-void initMovesArray(movesArray** moves) {
-int i, j;
-//#define basicTest
-#define coverAllBoard
-
-#ifdef basicTest/*
-	for (i = 0; i < N; i++) {
-		for (j = 0; j < M; j++) {
-			if (i == 0 && j == 0)
-				moves[i][j].size = 5;
-			else
-				moves[i][j].size = 4;
-			moves[i][j].moves = (Move*)malloc(sizeof(Move) * moves[i][j].size);
-			moves[i][j].moves[0].rows = 2;
-			moves[i][j].moves[0].cols = -2;
-			moves[i][j].moves[1].rows = -2;
-			moves[i][j].moves[1].cols = -2;
-			moves[i][j].moves[2].rows = 2;
-			moves[i][j].moves[2].cols = 2;
-			moves[i][j].moves[3].rows = -2;
-			moves[i][j].moves[3].cols = 2;
-		}
-	}
-
-	//moves[0][0].moves[4].rows = 2;
-	//moves[0][0].moves[4].cols = 1;
-	*/
-#endif
-
-#ifdef coverAllBoard
-	for (i = 0; i < N; i++) {
-		for (j = 0; j < M; j++) {
-			moves[i][j].size = 1;
-			moves[i][j].moves = (Move*)malloc(sizeof(Move) * moves[i][j].size);
-			moves[i][j].moves[0].rows = 1;
-			moves[i][j].moves[0].cols = 1;
-		}
-	}
-
-	//    All board path
-	moves[0][1].moves[0].rows = 0; //A2
-	moves[0][1].moves[0].cols = 2;
-	moves[0][3].moves[0].rows = 0; //A4
-	moves[0][3].moves[0].cols = -3;
-	moves[0][0].moves[0].rows = 1; //A1
-	moves[0][0].moves[0].cols = 1;
-	moves[1][1].moves[0].rows = 0; //B2
-	moves[1][1].moves[0].cols = 2;
-	moves[1][3].moves[0].rows = 0; //B4
-	moves[1][3].moves[0].cols = -1;
-	//Last = B3
-#endif
-
-}
 
 boardPosArray** validMoves(movesArray** moves, char** board) {
 	boardPosArray** res;

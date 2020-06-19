@@ -18,17 +18,18 @@
 #include "stdlib.h"
 #include "string.h"
 #include "stdbool.h"
+#include "FreeMemory.h"
 
-//TODO: Add description
+//this function saves a given boardPosArray into a binary file.
 void saveListToBinFile(char* file_name, boardPosArray* pos_arr);
 
-//TODO: Add description
+//This function returns a boardPosArray filled according to a given binary file.
 boardPosArray* readFromBinFile(char* file_name, bool* isExist);
 
-//TODO: Add description
+//This function compresses numOfPos boardPoses starting from a given index (j).
 void setBits(boardPosArray* pos_arr, BYTE res[], int j, int numOfPos);
 
-//TODO: Add description
+//This function decompresses numOfPos boardPoses starting from a given index (i).
 void writePosToArr(boardPosArray* arr, int i, BYTE* data, int numOfPos);
 
 #endif

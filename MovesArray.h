@@ -16,20 +16,15 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "stdbool.h"
+#include "FreeMemory.h"
 
-//TODO: Add description
-void PrintMovesBoard(movesArray** moves);
-
-//TODO: Add description
+//This function prints a given board.
 void PrintBoard(char** board);
 
-//TODO: Add description
-void initMovesArray(movesArray** moves);
-
-//TODO: Add description
+//This function filters the invalid moves of a given movesArray and returns a boardPosArray of all the valid positions.
 boardPosArray** validMoves(movesArray** moves, char** board);
 
-//TODO: Add description
+//This function returns true if a given move is valid ; false otherwise.
 bool isValid(char** board, Move cellDest, int i, int j);
 
 #endif

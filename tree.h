@@ -16,6 +16,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "stdbool.h"
+#include "FreeMemory.h"
 
 //TODO: Add description
 #define isEmptyList(lst) (((lst) == NULL) ? true : false)
